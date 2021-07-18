@@ -16,7 +16,9 @@ public class Config {
         return main.getConfig().getString("execute-on-0");
     }
 
-    public static boolean usingInternalHealth() {
+    public static boolean reduceInternalHealth() {
         return main.getConfig().getBoolean("reduce-internal-health");
     }
+
+    public static boolean shouldDisplayActionBar() {return main.getConfig().getBoolean("display-action-bars"); }
 }

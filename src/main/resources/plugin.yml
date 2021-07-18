@@ -5,6 +5,7 @@ api-version: 1.17
 prefix: LifeSteal
 author: Shreyas#0001
 description: A plugin that gives you extra hearts when you kill someone, and takes away hearts when you die! (Like the Lifesteal SMP)
+
 commands:
   lifesteal:
     aliases: [lifes, ls, steallife]

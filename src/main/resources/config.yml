@@ -11,3 +11,6 @@ execute-on-0: ""
 reduce-internal-health: true
 # If set to true, 2 hearts remaining on the bar, will internally be 2 hearts (1 hit with a good sword will kill)
 # If set to false, 2 hearts remaining on the bar will internally be a full (20) player health (a couple shots with a sword will kill)
+
+display-action-bars: true
+# Display action bar messages when a player loses/gains a heart.
