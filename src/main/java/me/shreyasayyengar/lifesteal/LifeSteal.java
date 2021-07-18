@@ -1,6 +1,7 @@
 package me.shreyasayyengar.lifesteal;
 
 import me.shreyasayyengar.lifesteal.commands.BaseCommand;
+import me.shreyasayyengar.lifesteal.commands.BaseCommandTabCompleter;
 import me.shreyasayyengar.lifesteal.config.Config;
 import me.shreyasayyengar.lifesteal.events.DeathEvent;
 import me.shreyasayyengar.lifesteal.events.KillEvent;

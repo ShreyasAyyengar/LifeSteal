@@ -1,4 +1,4 @@
-package me.shreyasayyengar.lifesteal;
+package me.shreyasayyengar.lifesteal.commands;
 
 import com.google.common.collect.Lists;
 import org.bukkit.command.Command;
