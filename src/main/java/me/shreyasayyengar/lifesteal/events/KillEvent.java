@@ -20,7 +20,6 @@ public class KillEvent implements Listener {
 
             if (killer.getHealthScale() < 20.0) {
 
-
                 killer.setHealthScaled(true);
                 killer.setHealthScale(killer.getHealthScale() + 2);
                 if (Config.reduceInternalHealth()) {
