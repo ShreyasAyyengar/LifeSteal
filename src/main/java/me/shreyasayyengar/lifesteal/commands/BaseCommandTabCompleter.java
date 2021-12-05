@@ -18,8 +18,9 @@ public class BaseCommandTabCompleter implements TabCompleter {
         List<String> Flist = Lists.newArrayList();
         if (args.length == 1) {
             for (String s : arguments) {
-                if (s.toLowerCase().startsWith(args[0].toLowerCase()))
+                if (s.toLowerCase().startsWith(args[0].toLowerCase())) {
                     Flist.add(s);
+                }
             }
             return Flist;
         }

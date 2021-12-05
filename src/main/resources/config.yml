@@ -1,16 +1,26 @@
-# LifeSteal by Shreyas Ayyengar (Shreyas#0001)
-# v1.0
+#  ██╗░░░░░██╗███████╗███████╗░██████╗████████╗███████╗░█████╗░██╗░░░░░
+#  ██║░░░░░██║██╔════╝██╔════╝██╔════╝╚══██╔══╝██╔════╝██╔══██╗██║░░░░░
+#  ██║░░░░░██║█████╗░░█████╗░░╚█████╗░░░░██║░░░█████╗░░███████║██║░░░░░
+#  ██║░░░░░██║██╔══╝░░██╔══╝░░░╚═══██╗░░░██║░░░██╔══╝░░██╔══██║██║░░░░░
+#  ███████╗██║██║░░░░░███████╗██████╔╝░░░██║░░░███████╗██║░░██║███████╗
+#  ╚══════╝╚═╝╚═╝░░░░░╚══════╝╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚══════╝
+# by Shreyas Ayyengar (Shreyas#0001)
 
 # What even is put between the quotes will be run when the player hits 0 health. (e.g ban, kick, any other commands)
 # Please omit the '/' in the command. For e.x "ban Steve010" NOT "/ban Steve010"
-execute-on-0: ""
+execute-on-0:
+  - ""
 # You can use the placeholder %player_name% to hold the player's name
+
+
+# Enable crafting hearts that players can right-click to gain a heart
+enable-custom-crafting: true
 
 
 # This will determine if the plugin should reduce the overall internal health, when the physical hearts go down.
 reduce-internal-health: true
 # If set to true, 2 hearts remaining on the bar, will internally be 2 hearts (1 hit with a good sword will kill)
-# If set to false, 2 hearts remaining on the bar will internally be a full (20) player health (a couple shots with a sword will kill)
+# If set to false, 2 hearts remaining on the bar will internally be a full (20) hearts on a players' health (a couple shots with a sword will kill)
 
 display-action-bars: true
 # Display action bar messages when a player loses/gains a heart.

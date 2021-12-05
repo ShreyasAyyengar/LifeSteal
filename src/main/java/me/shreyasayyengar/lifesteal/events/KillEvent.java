@@ -23,13 +23,10 @@ public class KillEvent implements Listener {
                 killer.setHealthScaled(true);
                 killer.setHealthScale(killer.getHealthScale() + 2);
                 if (Config.reduceInternalHealth()) {
-                    //noinspection deprecation
                     killer.setMaxHealth(killer.getHealthScale());
                 }
                 if (Config.shouldDisplayActionBar()) {
-                    //noinspection deprecation
-                    killer.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN +
-                            "You gained a full heart by killing " + player.getName()));
+                    killer.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "You gained a full heart by killing " + player.getName()));
                 }
             }
         }

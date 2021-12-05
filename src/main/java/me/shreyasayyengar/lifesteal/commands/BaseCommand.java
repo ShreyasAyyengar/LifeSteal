@@ -13,35 +13,40 @@ public class BaseCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        String prefix = ChatColor.YELLOW + "[Life" + ChatColor.BOLD + "Steal] - ";
-
         if (sender.hasPermission("lifesteal.manage")) {
             if (args.length == 0) {
                 sendUsageMesssage(sender);
             } else if (args.length == 1) {
                 switch (args[0].toLowerCase()) {
 
-                    case "restoreall", "resetall" -> {
+                    case "restoreall":
+                    case "resetall":
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             //noinspection deprecation
                             player.setMaxHealth(20.0);
                             player.setHealthScale(20.0);
                             player.setHealth(20.0);
-                            player.sendMessage(prefix + ChatColor.GREEN + "Your health has been restored to normal!");
-                            sender.sendMessage(prefix + ChatColor.GREEN + "You have successfully reset " + player.getName() + "'s health!");
+                            player.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "Your health has been restored to normal!");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "You have successfully reset " + player.getName() + "'s health!");
                         }
-                    }
+                        break;
 
-                    case "config", "reloadconfig", "reload", "rc" -> {
+                    case "config":
+                    case "reloadconfig":
+                    case "reload":
+                    case "rc":
                         LifeSteal.getInstance().reloadConfig();
-                        sender.sendMessage(prefix + ChatColor.GREEN + "The configuration file has been reloaded!");
-                    }
-                    default -> sendUsageMesssage(sender);
+                        sender.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "The configuration file has been reloaded!");
+                        break;
+
+                    default:
+                        sendUsageMesssage(sender);
 
                 }
             } else if (args.length == 2) {
                 switch (args[0].toLowerCase()) {
-                    case "reset", "restore" -> {
+                    case "reset":
+                    case "restore": {
                         Player player = Bukkit.getPlayer(args[1]);
                         if (player != null) {
                             if (player.isOnline()) {
@@ -49,21 +54,24 @@ public class BaseCommand implements CommandExecutor {
                                 player.setMaxHealth(20.0);
                                 player.setHealthScale(20.0);
                                 player.setHealth(20.0);
-                                player.sendMessage(prefix + ChatColor.GREEN + "Your health has been restored to normal!");
-                                sender.sendMessage(prefix + ChatColor.GREEN + "You have successfully reset " + player.getName() + "'s health!");
+                                player.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "Your health has been restored to normal!");
+                                sender.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "You have successfully reset " + player.getName() + "'s health!");
                             } else {
-                                sender.sendMessage(prefix + ChatColor.RED + "The player (" + args[1] + ") is not online!");
+                                sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + "The player (" + args[1] + ") is not online!");
                             }
                         } else {
-                            sender.sendMessage(prefix + ChatColor.RED + "The player " + ChatColor.YELLOW + "(" + args[1] + ") " + ChatColor.RED + "does not exist!!");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + "The player " + ChatColor.YELLOW + "(" + args[1] + ") " + ChatColor.RED + "does not exist!!");
                         }
                     }
-                    case "resetall", "restoreall" -> {
+
+                    break;
+                    case "resetall":
+                    case "restoreall": {
                         double newHealth = 0;
                         try {
                             newHealth = Double.parseDouble(args[1]);
                         } catch (NumberFormatException e) {
-                            sender.sendMessage(prefix + ChatColor.RED + args[1] + " is not a valid number!");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + args[1] + " is not a valid number!");
                         }
 
                         if (!(newHealth < 1 || newHealth > 20)) {
@@ -73,51 +81,56 @@ public class BaseCommand implements CommandExecutor {
                                 player.setMaxHealth(newHealth);
                                 player.setHealthScale(newHealth);
                                 player.setHealth(newHealth);
-                                player.sendMessage(prefix + ChatColor.GREEN + "Your health has been set to " + args[1] + " HP!");
-                                sender.sendMessage(prefix + ChatColor.GREEN + "You have successfully set " + player.getName() + "'s health to " + args[1] + " HP!");
+                                player.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "Your health has been set to " + args[1] + " HP!");
+                                sender.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "You have successfully set " + player.getName() + "'s health to " + args[1] + " HP!");
                             }
                         } else {
-                            sender.sendMessage(prefix + ChatColor.BLUE + "The HP must be in between 1 - 20");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.BLUE + "The HP must be in between 1 - 20");
                         }
                     }
-                    default -> sendUsageMesssage(sender);
+                    break;
+
+                    default:
+                        sendUsageMesssage(sender);
                 }
             } else if (args.length == 3) {
                 switch (args[0].toLowerCase()) {
-                    case "reset", "restore" -> {
+                    case "reset":
+                    case "restore": {
                         Player player = Bukkit.getPlayer(args[1]);
                         double newHealth = 0;
                         try {
                             newHealth = Double.parseDouble(args[2]);
                         } catch (NumberFormatException e) {
-                            sender.sendMessage(prefix + ChatColor.RED + args[2] + " is not a valid number!");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + args[2] + " is not a valid number!");
                         }
                         if (!(newHealth < 1 || newHealth > 20)) {
                             if (player != null) {
                                 if (player.isOnline()) {
-                                    //noinspection deprecation
                                     player.setMaxHealth(newHealth);
                                     player.setHealthScale(newHealth);
                                     player.setHealth(newHealth);
-                                    player.sendMessage(prefix + ChatColor.GREEN + "Your health has been set to " + newHealth + " HP!");
-                                    sender.sendMessage(prefix + ChatColor.GREEN + "You have successfully set " + player.getName() + "'s health to " + newHealth + " HP!");
+                                    player.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "Your health has been set to " + newHealth + " HP!");
+                                    sender.sendMessage(LifeSteal.PREFIX + ChatColor.GREEN + "You have successfully set " + player.getName() + "'s health to " + newHealth + " HP!");
                                 } else {
-                                    sender.sendMessage(prefix + ChatColor.RED + "The player (" + args[1] + ") is not online!");
+                                    sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + "The player (" + args[1] + ") is not online!");
                                 }
                             } else {
-                                sender.sendMessage(prefix + ChatColor.RED + "The player " + ChatColor.YELLOW + "(" + args[1] + ") " + ChatColor.RED + "does not exist!!");
+                                sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + "The player " + ChatColor.YELLOW + "(" + args[1] + ") " + ChatColor.RED + "does not exist!!");
                             }
                         } else {
-                            sender.sendMessage(prefix + ChatColor.BLUE + "The HP must be in between 1 - 20");
+                            sender.sendMessage(LifeSteal.PREFIX + ChatColor.BLUE + "The HP specified must be in between 1 - 20");
                         }
                     }
-                    default -> sendUsageMesssage(sender);
+                    break;
+                    default:
+                        sendUsageMesssage(sender);
                 }
             } else {
                 sendUsageMesssage(sender);
             }
         } else {
-            sender.sendMessage(prefix + ChatColor.RED + "You do not have permission to execute this command!");
+            sender.sendMessage(LifeSteal.PREFIX + ChatColor.RED + "You do not have permission to execute this command!");
         }
 
         return false;

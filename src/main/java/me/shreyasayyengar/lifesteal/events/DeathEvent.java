@@ -22,7 +22,7 @@ public class DeathEvent implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Config.getExecuteCommand().replaceAll("%player_name%", player.getName()));
+                    Config.getExecuteCommand().forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replaceAll("%player_name%", player.getName())));
                 }
             }.runTaskLater(LifeSteal.getInstance(), 5);
         } // out-of-lives actions
@@ -30,9 +30,7 @@ public class DeathEvent implements Listener {
         if (!((player.getHealthScale() - 2) <= 0)) {
             player.setHealthScale(player.getHealthScale() - 2);
             if (Config.shouldDisplayActionBar()) {
-                //noinspection deprecation
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                        TextComponent.fromLegacyText(ChatColor.RED + "You lost a heart! Kill other players to gain a full heart!"));
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "You lost a heart! Kill other players to gain a full heart!"));
             }
         } // reduce heart actions (always enabled)
 
